@@ -6,10 +6,15 @@
 int main(int argc, char* argv[]) {
     if (\
         (argc == 1) || \
+        (argc > 1 && argv[1][0] == '1') \
+    ) {
+         printf(" ============ Running Set 1 ============ \n");
+    }
+    if (\
+        (argc == 1) || \
         (argc == 2 && argv[1][0] == '1') || \
         (argc == 3 && (argv[1][0] == '1' && argv[2][0] == '1'))
     ) {
-        printf(" ============ Running Set 1 ============ \n");
         printf("Challenge 1: Convert hex to base64 \n");
 
         const char* hex_string = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d";
@@ -29,8 +34,38 @@ int main(int argc, char* argv[]) {
 
         }
 
-        printf(" ======================================= \n");
 
+    }
+
+    if (\
+        (argc == 1) || \
+        (argc == 2 && argv[1][0] == '1') || \
+        (argc == 3 && (argv[1][0] == '1' && argv[2][0] == '2'))
+    ) {
+        printf("Challenge 2: Fixed XOR \n");
+
+        const char* expected = "746865206b696420646f6e277420706c6179";
+        char* actual;
+
+        if(!strcmp(expected, actual)) {
+            printf("\e[92m Challenge 2 Passed!\e[0m \n");
+        }
+        else {
+            printf("\e[91m Challenge 2 Failed! \e[0m \n");
+            printf("%s\n", actual);
+            printf("is different than the expected: ");
+            printf("%s\n", expected);
+
+        }
+
+
+    }
+
+    if (\
+        (argc == 1) || \
+        (argc > 1 && argv[1][0] == '1') \
+    ) {
+         printf(" ======================================= \n");
     }
 
     return 0;
