@@ -19,3 +19,16 @@ Challenge 1: Convert hex to base64
  Challenge 1 Passed! 
  ======================================= 
 ```
+
+### Challenge 2: Fixed XOR
+
+```bash
+./cryptopals 1 2
+ ============ Running Set 1 ============ 
+Challenge 2: Fixed XOR 
+    Hex String 1: 1c0111001f010100061a024b53535009181c
+    Hex String 2: 686974207468652062756c6c277320657965
+    Result: 746865206b696420646f6e277420706c6179
+Challenge 2 Passed! 
+ ======================================= 
+```

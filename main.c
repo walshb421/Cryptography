@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "./basics/hex2base64.h"
+#include "./basics/fixed_xor.h"
 
 int main(int argc, char* argv[]) {
     if (\
@@ -24,10 +25,10 @@ int main(int argc, char* argv[]) {
         result = hex2base64(hex_string);
 
         if(!strcmp(base64_string, result)) {
-            printf("\e[92m Challenge 1 Passed!\e[0m \n");
+            printf("\e[92mChallenge 1 Passed!\e[0m \n");
         }
         else {
-            printf("\e[91m Challenge 1 Failed! \e[0m \n");
+            printf("\e[91mChallenge 1 Failed! \e[0m \n");
             printf("%s\n", result);
             printf("is different than the expected: ");
             printf("%s\n", base64_string);
@@ -44,14 +45,20 @@ int main(int argc, char* argv[]) {
     ) {
         printf("Challenge 2: Fixed XOR \n");
 
+        const char* hex_string1 = "1c0111001f010100061a024b53535009181c";
+        const char* hex_string2 = "686974207468652062756c6c277320657965";
+
+
         const char* expected = "746865206b696420646f6e277420706c6179";
         char* actual;
 
+        actual = fixed_xor(hex_string1, hex_string2);
+
         if(!strcmp(expected, actual)) {
-            printf("\e[92m Challenge 2 Passed!\e[0m \n");
+            printf("\e[92mChallenge 2 Passed!\e[0m \n");
         }
         else {
-            printf("\e[91m Challenge 2 Failed! \e[0m \n");
+            printf("\e[91mChallenge 2 Failed! \e[0m \n");
             printf("%s\n", actual);
             printf("is different than the expected: ");
             printf("%s\n", expected);
