@@ -1,4 +1,4 @@
-#include "hex2base64.h"
+#include "basics.h"
 
 char* hex2base64(const char* hex_string) {
     size_t nchars = 2*(strlen(hex_string)/3);

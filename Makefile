@@ -4,17 +4,23 @@ CC = gcc
 
 all: cryptopals
 
-$(EXE): main.o hex2base64.o fixed_xor.o
+$(EXE): main.o hex2base64.o fixed_xor.o xor_cypher.o common.o
 	$(CC) $(LDFLAGS) $^ -o $@ 
 
-main.o: main.c basics/hex2base64.h basics/fixed_xor.h
+main.o: main.c basics/basics.h
 	$(CC) -c main.c -o $@
 
-hex2base64.o: basics/hex2base64.c basics/hex2base64.h 
+common.o: basics/common.c basics/basics.h 
+	$(CC) -c basics/common.c -o $@
+
+hex2base64.o: basics/hex2base64.c basics/basics.h 
 	$(CC) -c basics/hex2base64.c -o $@
 
-fixed_xor.o: basics/fixed_xor.c basics/fixed_xor.h 
+fixed_xor.o: basics/fixed_xor.c basics/basics.h
 	$(CC) -c basics/fixed_xor.c -o $@
+
+xor_cypher.o: basics/xor_cypher.c basics/basics.h
+	$(CC) -c basics/xor_cypher.c -o $@
 
 run: $(EXE)
 	./$(EXE)
