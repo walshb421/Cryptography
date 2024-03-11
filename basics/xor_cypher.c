@@ -1,9 +1,29 @@
 #include "basics.h"
 
+int score_char_english(const char letter) {
+    const char* rank = "ETAOIN SHRDLCUMWFGYPBVKJXQZ"; // From Wikipedia
+    int score = 0;
+    if(letter > ' ' && letter < 'A' ) { 
+        // If this were smarter it would score based on least frequent characters too
+        return -1; 
+    }
+    else { 
+        int value = strlen(rank);
+        int k;
+        for(k = 0; k < value; k++) {
+            if(letter == rank[k]) {
+                return (value - k);
+                break;
+            }
+        }
+
+    }
+}
+
 
 char* xor_cypher(const char* hex_string) {
 
-    // From Wikipedia (Plus Space Placement in prompt)
+    // From Wikipedia (Plus Space Placement from prompt)
     const char* scoring = "ETAOIN SHRDLCUMWFGYPBVKJXQZ";
    
 
@@ -24,23 +44,11 @@ char* xor_cypher(const char* hex_string) {
             char crypt = hex2byte(&hex_string[j << 1]);
             char key = i;
             char cypher = crypt ^ key;
-    
-            if(cypher < ' ' || cypher > '~' ) break; 
-            else if(cypher > ' ' && cypher < 'A' ) { 
-                // If this were smarter it would score based on least frequent characters
-                score += -1; 
-            }
-            else { 
-                int value = strlen(scoring);
-                int k;
-                for(k = 0; k < value; k++) {
-                    if(cypher == scoring[k]) {
-                        score += (value - k);
-                        break;
-                    }
-                }
+            
+            if(cypher < ' ' || cypher > '~' ) break;
 
-            }
+            score += score_char_english(cypher);
+            if(score < -50) break;
             contender[j] = cypher;
 
         }

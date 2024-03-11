@@ -32,3 +32,14 @@ Challenge 2: Fixed XOR
 Challenge 2 Passed! 
  ======================================= 
 ```
+
+
+### Challenge 3: Single-Byte XOR Cypher
+
+```bash
+Challenge 3: Single Byte Xor Cypher 
+Highest Scoring Message:
+ Cooking MC's like a pound of bacon
+Challenge 3 Passed! 
+ ======================================= 
+```
