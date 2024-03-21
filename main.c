@@ -90,6 +90,30 @@ int main(int argc, char* argv[]) {
             }
 
         }
+
+        if (\
+            (argc == 1) || \
+            (argc == 2 && argv[1][0] == '1') || \
+            (argc == 3 && (argv[1][0] == '1' && argv[2][0] == '4'))
+        ) {
+            printf("Challenge 4: Detect single-character XOR \n");
+
+            const char* cyphertext_file = "./basics/cyphertext1.txt";
+            const char* expected = "Not Available Yet";
+            const char* actual = detect_char_xor(cyphertext_file);
+
+            if(!strcmp(expected, actual)) {
+                printf("\e[92mChallenge 4 Passed!\e[0m \n");
+            }
+            else {
+                printf("\e[91mChallenge 4 Failed! \e[0m \n");
+                printf("%s\n", actual);
+                printf("is different than the expected: ");
+                printf("%s\n", expected);
+
+            }
+
+        }
     }
 
     if (\

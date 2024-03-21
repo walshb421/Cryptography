@@ -1,26 +1,5 @@
 #include "basics.h"
 
-int score_char_english(const char letter) {
-    const char* rank = "ETAOIN SHRDLCUMWFGYPBVKJXQZ"; // From Wikipedia
-    int score = 0;
-    if(letter > ' ' && letter < 'A' ) { 
-        // If this were smarter it would score based on least frequent characters too
-        return -1; 
-    }
-    else { 
-        int value = strlen(rank);
-        int k;
-        for(k = 0; k < value; k++) {
-            if(letter == rank[k]) {
-                return (value - k);
-                break;
-            }
-        }
-
-    }
-}
-
-
 char* xor_cypher(const char* hex_string) {
 
     // From Wikipedia (Plus Space Placement from prompt)

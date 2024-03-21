@@ -11,11 +11,13 @@
 char* hex2base64(const char *);
 char* fixed_xor(const char *, const char *);
 char* xor_cypher(const char *);
+char* detect_char_xor(const char *);
 
 /* COMMON UTILITIES */
 
 uint8_t hex2nibble(char);
 char nibble2hex(uint8_t);
 uint8_t hex2byte(const char*);
+int score_char_english(const char);
 
 #endif /* __BASICS_H__ */
