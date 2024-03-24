@@ -19,10 +19,10 @@ char nibble2hex(uint8_t nibble) {
     return hex;
 }
 
-
 uint8_t hex2byte(const char* hex) {
     return (hex2nibble(*hex) << 4) |  hex2nibble(*(hex + 1));
 }
+
 
 int score_char_english(const char letter) {
     const char* rank = "ETAOIN SHRDLCUMWFGYPBVKJXQZ"; // From Wikipedia
@@ -42,4 +42,8 @@ int score_char_english(const char letter) {
         }
 
     }
+}
+
+int score_string_english(const char* string) {
+
 }

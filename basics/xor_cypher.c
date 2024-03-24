@@ -41,7 +41,7 @@ char* xor_cypher(const char* hex_string) {
 
     }
     
-    printf("Highest Scoring Message:\n %s\n", winner);
+    printf("    Highest Scoring Message: %s\n", winner);
     return (char*) winner;
             
 }

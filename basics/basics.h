@@ -12,6 +12,7 @@ char* hex2base64(const char *);
 char* fixed_xor(const char *, const char *);
 char* xor_cypher(const char *);
 char* detect_char_xor(const char *);
+char* encrypt_repeating_xor(const char*, const char*);
 
 /* COMMON UTILITIES */
 
