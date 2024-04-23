@@ -47,3 +47,14 @@ int score_char_english(const char letter) {
 int score_string_english(const char* string) {
 
 }
+
+char* decode_base64(const char* base64_string) {
+    int nbytes = (strlen(base64_string)*4)/3;
+    char* result = malloc(nbytes + 1);
+    result[nbytes] = '\0';
+    int i;
+    for(i = 0; i < nbytes; i++) {
+        result[i] = i;
+    }
+    return result;
+}

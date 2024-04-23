@@ -16,6 +16,7 @@ char* xor_cypher(const char* hex_string) {
     int i;
     for(i = 32; i < 127; i++) {
         int score = 0;
+        
         char *contender = malloc(nchars + 1);
 
         int j;
