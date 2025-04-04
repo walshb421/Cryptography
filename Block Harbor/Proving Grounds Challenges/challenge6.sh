@@ -64,8 +64,9 @@ SEC_ACCESS_1() {
    case $rid in
       67)
 	 SEED=$(echo $res | cut -d ' ' -f 3-7 -O '')
-	 KEY=$(printf "%08X" "$((0x$SEED ^ 0x7D709F4D))" | sed 's/../& /g')
-         UDS 27 02 $KEY
+   KEY=$(READ_MEM 0001AC08 4)
+	 # KEY=$(printf "%08X" "$((16#$SEED ^ 16#6E013A98))" | sed 's/../& /g')
+   UDS 27 02 $KEY
 
 
 
@@ -98,12 +99,31 @@ READ_MEM() {
    case $rid in
       63)
          echo $res | cut -d ' ' -f 2-
-	 ;;
+         ;;
       7E)
          echo "Negative Response .... "
+         echo $size
+         ;;
    esac
 }
 
+
+MEMDUMP() {
+  START_ADDR=0001A000
+  SIZE_SIZE=4
+  PAGE_SIZE=3000
+  NPAGES=1
+
+  for addr in $(seq $((16#$START_ADDR)) $PAGE_SIZE $((16#$START_ADDR + ($NPAGES*$PAGE_SIZE))))
+  do
+    READ_MEM $(printf "%08X" "$addr") $PAGE_SIZE
+  done
+
+  #READ_MEM $(printf "%08X" "$((16#0001A000 + 6000 ))") 2191
+  
+  #READ_MEM $(printf "%08X" "$((16#0001A000 + 8191 ))") 1
+
+}
 
 EXT_SESSION
 TESTER_PRESENT
@@ -116,22 +136,21 @@ REQ_KEY $KEY
 
 
 PROG_SESSION
-
 sleep 1
-printf "" > memdump.txt
 
-SADDR=1A000
-PGS=32
-PGN=5000
-
-OUTPUT=$( READ_MEM $(printf "%08X" $((0x$SADDR)))  4 | cut -d ' ' -f-4 -O '' )
-
-
-SEC_ACCESS_1 $OUTPUT
-
-
-#printf "%s\n" "$(tr -d '\n' < memdump.txt | fold -w 96 | xxd -r -p -c 32)"
-
+SEC_ACCESS_1
 sleep 1
+
+ES=$(READ_MEM 0001AC00 4)
+sleep 1
+EK=$(READ_MEM 0001AC08 4)
+sleep 1
+
+
+ES=$(echo $ES | cut -d ' ' -f-4 -O '')
+EK=$(echo $EK | cut -d ' ' -f-4 -O '')
+
+printf "%08X\n" "$(( 16#7D0E1A5C ^ (16#$ES ^ 16#$EK) ))"
+
 DEFAULT_SESSION
 
